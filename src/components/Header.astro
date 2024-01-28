@@ -1,0 +1,32 @@
+---
+import Button from "./Button.astro";
+---
+
+<nav
+  class="fixed z-50 h-28 w-full px-56 pt-10 flex justify-between items-center bg-bgWhite"
+>
+  <ul class="flex space-x-12 items-center text-xl">
+    <li>
+      <a href="#Intro" class="nav-link"
+        ><span
+          class="nav-circle inline-block w-3 h-3 rounded-full mr-2 border-2 border-fgPurple"
+        ></span>INTRO</a
+      >
+    </li>
+    <li>
+      <a href="#Portfolio" class="nav-link"
+        ><span
+          class="nav-circle inline-block w-3 h-3 rounded-full mr-2 border-2 border-fgPurple"
+        ></span>PORTFOLIO</a
+      >
+    </li>
+    <li>
+      <a href="#About" class="nav-link"
+        ><span
+          class="nav-circle inline-block w-3 h-3 rounded-full mr-2 border-2 border-fgPurple"
+        ></span>ABOUT</a
+      >
+    </li>
+  </ul>
+  <Button text="CONTACT" href="#Contact" />
+</nav>

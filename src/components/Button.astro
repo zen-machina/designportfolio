@@ -1,0 +1,11 @@
+---
+const { text, href, scrollTo, addClasses = "" } = Astro.props;
+---
+
+<a
+  href={href ? href : "#"}
+  class={"w-32 h-12 bg-transparent hover:bg-zenOrange hover:text-bgWhite text-zenOrange border-2 border-zenOrange font-bold flex justify-center items-center rounded ${addClasses}"}
+  data-scroll-to={scrollTo}
+>
+  {text}
+</a>
