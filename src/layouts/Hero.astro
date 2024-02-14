@@ -1,17 +1,15 @@
 ---
-import { Image } from 'astro:assets';
-import MyImage from '../assets/images/z02.jpg';
+
 ---
 
 <section
     id="Intro"
-    class="h-screen w-full bg-bgWhite flex items-center justify-center"
+    class="h-screen w-full bg-[url('src/assets/images/BgGradient_01.jpg')] bg-no-repeat bg-cover bg-center flex items-center justify-center bg-fixed"
 >
-    <Image src={MyImage} alt="background hero image" />
-    <div class="container mx-auto pl-32">
-        <h1 class="text-7xl text-fgPurple font-serif">
+    <div class="container mx-auto pl-32 text-bgWhite">
+        <h1 class="text-7xl font-serif">
             <span class="text-zenRed">Armando A.</span><br />
-            Web Developer and<br /> Graphic Designer.<br /> Ready for New Opportunities.
+            Graphic Designer<br />and Web Developer.<br /> Based in Sunny San Diego.
         </h1>
         <p class="text-2xl mt-7 leading-8">
             Welcome to my Portfolio, I’m glad you’re here!<br />

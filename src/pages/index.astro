@@ -1,70 +1,78 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Hero from "../layouts/Hero.astro";
-import Portfolio from "../layouts/Portfolio.astro";
-import About from "../layouts/About.astro";
-import Contact from "../layouts/Contact.astro";
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../layouts/Hero.astro';
+import Portfolio from '../layouts/Portfolio.astro';
+import About from '../layouts/About.astro';
+import Contact from '../layouts/Contact.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <Header />
-    <Hero />
-    <Portfolio />
-    <About />
-    <Contact />
-  </main>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const navLinks = document.querySelectorAll(".nav-link");
-      const navButton = document.querySelector(".nav-button");
+    <main>
+        <Header />
+        <Hero />
+        <Portfolio />
+        <About />
+        <Contact />
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navButton = document.querySelector('.nav-button');
 
-      function updateActiveLink() {
-        let currentSection = "";
-        const fromTop = window.scrollY + window.innerHeight / 2; // Midpoint of the viewport
+            function updateActiveLink() {
+                let currentSection = 'Intro';
+                const fromTop = window.scrollY + window.innerHeight / 2; // Midpoint of the viewport
 
-        document.querySelectorAll("main > section").forEach((section) => {
-          const sectionElement = section as HTMLElement; // Type assertion
-          if (
-            sectionElement.offsetTop <= fromTop &&
-            sectionElement.offsetTop + sectionElement.offsetHeight > fromTop
-          ) {
-            // Handle potential null value
-            currentSection = sectionElement.getAttribute("id") ?? "";
-          }
-        });
+                document
+                    .querySelectorAll('main > section')
+                    .forEach((section) => {
+                        const sectionElement = section as HTMLElement; // Type assertion
+                        if (
+                            sectionElement.offsetTop <= fromTop &&
+                            sectionElement.offsetTop +
+                                sectionElement.offsetHeight >
+                                fromTop
+                        ) {
+                            // Handle potential null value
+                            currentSection =
+                                sectionElement.getAttribute('id') ?? '';
+                        }
+                    });
 
-        navLinks.forEach((linkElement) => {
-          const link = linkElement as HTMLAnchorElement; // Type assertion for anchor element
-          const navCircle = link.querySelector(".nav-circle");
-          if (navCircle) {
-            if (link.hash === "#" + currentSection) {
-              navCircle.classList.add("bg-fgPurple");
-            } else {
-              navCircle.classList.remove("bg-fgPurple");
+                navLinks.forEach((linkElement) => {
+                    const link = linkElement as HTMLAnchorElement; // Type assertion for anchor element
+                    const navCircle = link.querySelector('.nav-circle');
+                    if (navCircle) {
+                        if (link.hash === '#' + currentSection) {
+                            navCircle.classList.add('bg-bgWhite');
+                        } else {
+                            navCircle.classList.remove('bg-bgWhite');
+                        }
+                    }
+                });
+                // Update nav button
+                if (navButton) {
+                    const buttonElement = navButton as HTMLElement; // Type assertion
+                    if (
+                        buttonElement.getAttribute('href') ===
+                        '#' + currentSection
+                    ) {
+                        buttonElement.classList.remove('bg-transparent');
+                        buttonElement.classList.remove('text-zenOrange');
+                        buttonElement.classList.add('bg-zenOrange');
+                        buttonElement.classList.add('text-bgWhite');
+                    } else {
+                        buttonElement.classList.add('bg-transparent');
+                        buttonElement.classList.add('text-zenOrange');
+                        buttonElement.classList.remove('bg-zenOrange');
+                        buttonElement.classList.remove('text-bgWhite');
+                    }
+                }
             }
-          }
-        });
-        // Update nav button
-        if (navButton) {
-          const buttonElement = navButton as HTMLElement; // Type assertion
-          if (buttonElement.getAttribute("href") === "#" + currentSection) {
-            buttonElement.classList.remove("bg-transparent");
-            buttonElement.classList.remove("text-zenOrange");
-            buttonElement.classList.add("bg-zenOrange");
-            buttonElement.classList.add("text-bgWhite");
-          } else {
-            buttonElement.classList.add("bg-transparent");
-            buttonElement.classList.add("text-zenOrange");
-            buttonElement.classList.remove("bg-zenOrange");
-            buttonElement.classList.remove("text-bgWhite");
-          }
-        }
-      }
 
-      window.addEventListener("scroll", updateActiveLink);
-      updateActiveLink(); // Call on load
-    });
-  </script>
+            window.addEventListener('scroll', updateActiveLink);
+            updateActiveLink(); // Call on load
+        });
+    </script>
 </Layout>
