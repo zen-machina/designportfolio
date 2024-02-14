@@ -4,12 +4,13 @@ import GalleryCard from "../components/GalleryCard.astro";
 
 <section
   id="Portfolio"
-  class="h-full w-full min-w-0 p-28 border-red-500 border-4 flex justify-center"
+  class="h-full w-full min-w-0 p-28 border-current flex justify-center"
 >
   <div class="container flex justify-center">
     <div class="grid grid-cols-3 gap-4 min-w-0">
       <GalleryCard
         imageUrl="https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg"
+        addImageUrls="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg,https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
         alt="gallery-image"
         title="Berumen Childcare"
         type="Website"
@@ -74,4 +75,77 @@ import GalleryCard from "../components/GalleryCard.astro";
       />
     </div>
   </div>
-</section>; ---
+
+  <!-- Hidden Modal  -->
+  <div
+    id="portfolio-modal"
+    class="hidden fixed inset-0 bg-fgPurple bg-opacity-50 p-4 flex justify-center items-center"
+  >
+    <div
+      class="modal-content max-h-[80vh] bg-bgWhite p-8 mt-24 rounded-lg max-w-4xl w-full overflow-auto"
+    >
+      <button class="close-modal absolute top-2 right-2">X</button>
+      <!-- Modal content goes here -->
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("portfolio-modal");
+
+    if (modal) {
+      const modalContent = modal.querySelector(".modal-content");
+      const body = document.body; // Reference to the body element
+
+      if (modalContent) {
+        document.querySelectorAll(".gallery-card").forEach((card) => {
+          card.addEventListener("click", () => {
+            const imageUrl = card.getAttribute("data-img");
+            const title = card.getAttribute("data-title");
+            const type = card.getAttribute("data-type");
+            const description = card.getAttribute("data-description");
+
+            const additionalImages = card.getAttribute(
+              "data-additional-images",
+            );
+            let additionalImagesHtml = "";
+            if (additionalImages) {
+              const images = additionalImages.split(",");
+              additionalImagesHtml = images
+                .map(
+                  (imgUrl) => `<img src="${imgUrl}" alt="Additional Image" />`,
+                )
+                .join("");
+            }
+
+            // Create modal content HTML with additional images
+            let modalContentHtml = `
+            <h1 class="text-3xl text-bg-fgPurple">${title}</h1>
+            <p class="text-xl text-bg-fgPurple">${type}</p>
+            <img src="${imageUrl}" alt="${title}" />
+            <p class="mt-4">${description}</p>
+            ${additionalImagesHtml}
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>`;
+
+            modalContent.innerHTML = modalContentHtml;
+            modal.classList.remove("hidden");
+            body.classList.add("overflow-hidden"); // Use Tailwind class to disable scrolling
+          });
+        });
+
+        modal.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+
+          if (
+            target &&
+            (target === modal || target.classList.contains("close-modal"))
+          ) {
+            modal.classList.add("hidden");
+            body.classList.remove("overflow-hidden"); // Re-enable scrolling
+          }
+        });
+      }
+    }
+  });
+</script>

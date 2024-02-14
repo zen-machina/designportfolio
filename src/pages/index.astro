@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Hero from "../layouts/Hero.astro";
 import Portfolio from "../layouts/Portfolio.astro";
 import About from "../layouts/About.astro";
+import Contact from "../layouts/Contact.astro";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -12,10 +13,12 @@ import About from "../layouts/About.astro";
     <Hero />
     <Portfolio />
     <About />
+    <Contact />
   </main>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const navLinks = document.querySelectorAll(".nav-link");
+      const navButton = document.querySelector(".nav-button");
 
       function updateActiveLink() {
         let currentSection = "";
@@ -43,6 +46,21 @@ import About from "../layouts/About.astro";
             }
           }
         });
+        // Update nav button
+        if (navButton) {
+          const buttonElement = navButton as HTMLElement; // Type assertion
+          if (buttonElement.getAttribute("href") === "#" + currentSection) {
+            buttonElement.classList.remove("bg-transparent");
+            buttonElement.classList.remove("text-zenOrange");
+            buttonElement.classList.add("bg-zenOrange");
+            buttonElement.classList.add("text-bgWhite");
+          } else {
+            buttonElement.classList.add("bg-transparent");
+            buttonElement.classList.add("text-zenOrange");
+            buttonElement.classList.remove("bg-zenOrange");
+            buttonElement.classList.remove("text-bgWhite");
+          }
+        }
       }
 
       window.addEventListener("scroll", updateActiveLink);
