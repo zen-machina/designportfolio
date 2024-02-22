@@ -24,21 +24,16 @@ import Contact from '../layouts/Contact.astro';
                 let currentSection = 'Intro';
                 const fromTop = window.scrollY + window.innerHeight / 2; // Midpoint of the viewport
 
-                document
-                    .querySelectorAll('main > section')
-                    .forEach((section) => {
-                        const sectionElement = section as HTMLElement; // Type assertion
-                        if (
-                            sectionElement.offsetTop <= fromTop &&
-                            sectionElement.offsetTop +
-                                sectionElement.offsetHeight >
-                                fromTop
-                        ) {
-                            // Handle potential null value
-                            currentSection =
-                                sectionElement.getAttribute('id') ?? '';
-                        }
-                    });
+                document.querySelectorAll('main > section').forEach((section) => {
+                    const sectionElement = section as HTMLElement; // Type assertion
+                    if (
+                        sectionElement.offsetTop <= fromTop &&
+                        sectionElement.offsetTop + sectionElement.offsetHeight > fromTop
+                    ) {
+                        // Handle potential null value
+                        currentSection = sectionElement.getAttribute('id') ?? '';
+                    }
+                });
 
                 navLinks.forEach((linkElement) => {
                     const link = linkElement as HTMLAnchorElement; // Type assertion for anchor element
@@ -54,10 +49,7 @@ import Contact from '../layouts/Contact.astro';
                 // Update nav button
                 if (navButton) {
                     const buttonElement = navButton as HTMLElement; // Type assertion
-                    if (
-                        buttonElement.getAttribute('href') ===
-                        '#' + currentSection
-                    ) {
+                    if (buttonElement.getAttribute('href') === '#' + currentSection) {
                         buttonElement.classList.remove('bg-transparent');
                         buttonElement.classList.remove('text-zenOrange');
                         buttonElement.classList.add('bg-zenOrange');

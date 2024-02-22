@@ -1,84 +1,85 @@
 ---
-import PhoneSvg from "../components/PhoneSvg.astro";
-import EmailSvg from "../components/EmailSvg.astro";
-import LinkedinSvg from "../components/LinkedinSvg.astro";
-import GithubSvg from "../components/GithubSvg.astro";
-import ResumeSvg from "../components/ResumeSvg.astro";
+import PhoneSvg from '../components/PhoneSvg.astro';
+import EmailSvg from '../components/EmailSvg.astro';
+import LinkedinSvg from '../components/LinkedinSvg.astro';
+import GithubSvg from '../components/GithubSvg.astro';
+import ResumeSvg from '../components/ResumeSvg.astro';
 ---
 
 <section
-  id="Contact"
-  class="h-screen w-full min-w-0 p-96 bg-fgPurple flex items-center"
+    id="Contact"
+    class="h-screen w-full min-w-0 lg:p-52 2xl:p-96 bg-fgPurple flex items-center"
 >
-  <div class="flex flex-col items-start font-serif text-bgWhite">
-    <!-- Phone Number -->
-    <div class="flex items-center mb-10">
-      <PhoneSvg />
-      <span class="text-4xl ml-10">760.481.5579</span>
-    </div>
+    <div
+        class="flex flex-col mt-20 items-start font-serif text-bgWhite lg:text-2xl 2xl:text-4xl"
+    >
+        <!-- Phone Number -->
+        <div class="flex items-center mb-10">
+            <PhoneSvg />
+            <span class="ml-10">760.481.5579</span>
+        </div>
 
-    <!-- Email Address -->
-    <div class="flex items-center mb-10">
-      <a
-        href="mailito:arojo@arojostudio.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <EmailSvg />
-      </a>
-      <a
-        href="mailto:arojo@arojostudio.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="text-4xl ml-10">arojo@arojostudio.com</span>
-      </a>
-    </div>
+        <!-- Email Address -->
+        <div class="flex items-center mb-10">
+            <a
+                href="mailito:arojo@arojostudio.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <EmailSvg />
+            </a>
+            <a
+                href="mailto:arojo@arojostudio.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span class="ml-10">arojo@arojostudio.com</span>
+            </a>
+        </div>
 
-    <!-- LinkedIn Profile -->
-    <div class="flex items-center mb-10">
-      <a
-        href="https://www.linkedin.com/in/armandoralvarez/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <LinkedinSvg />
-      </a>
-      <a
-        class="text-4xl ml-10"
-        href="https://www.linkedin.com/in/armandoralvarez/"
-        target="_blank"
-        rel="noopener noreferrer">LinkedIn</a
-      >
-    </div>
+        <!-- LinkedIn Profile -->
+        <div class="flex items-center mb-10">
+            <a
+                href="https://www.linkedin.com/in/armandoralvarez/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <LinkedinSvg />
+            </a>
+            <a
+                class="ml-10"
+                href="https://www.linkedin.com/in/armandoralvarez/"
+                target="_blank"
+                rel="noopener noreferrer">LinkedIn</a
+            >
+        </div>
 
-    <!-- GitHub Profile -->
-    <div class="flex items-center mb-10">
-      <a
-        href="https://github.com/zen-machina"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <GithubSvg />
-      </a>
-      <a
-        class="text-4xl ml-10"
-        href="https://github.com/zen-machina"
-        target="_blank"
-        rel="noopener noreferrer">GitHub</a
-      >
+        <!-- GitHub Profile -->
+        <div class="flex items-center mb-10">
+            <a
+                href="https://github.com/zen-machina"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <GithubSvg />
+            </a>
+            <a
+                class="ml-10"
+                href="https://github.com/zen-machina"
+                target="_blank"
+                rel="noopener noreferrer">GitHub</a
+            >
+        </div>
+        <!-- Resume Download Button -->
+        <div class="flex items-center">
+            <ResumeSvg />
+            <a
+                href="https://github.com/zen-machina"
+                download
+                class="flex items-center ml-10 bg-zenOrange hover:bg-zenOrange-dark text-white font-bold py-2 px-4 rounded"
+            >
+                Download Resume
+            </a>
+        </div>
     </div>
-    <div class="flex items-center mb-10">
-      <ResumeSvg />
-      <a
-        href="https://github.com/zen-machina"
-        download
-        class="flex items-center ml-10 bg-zenOrange hover:bg-zenOrange-dark text-white font-bold py-2 px-4 rounded"
-      >
-        Download Resume
-      </a>
-    </div>
-  </div>
-
-  <!-- Resume Download Button -->
 </section>

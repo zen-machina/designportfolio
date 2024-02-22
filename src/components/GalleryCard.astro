@@ -1,38 +1,44 @@
 ---
 // GalleryCard.astro
-import ArrowSvg from "./ArrowSvg.astro";
-import Button from "./Button.astro";
+import ArrowSvg from './ArrowSvg.astro';
+import Button from './Button.astro';
 const { imageUrl, addImageUrls, alt, title, type, description, onCardClick } =
-  Astro.props;
+    Astro.props;
 ---
 
-      <div
-  class="gallery-card relative group flex justify-start items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg"
-  role="button"
-  onclick={onCardClick}
-  data-img={imageUrl}
-  data-title={title}
-  data-type={type}
-  data-description={description}
-  data-additional-images={addImageUrls}
+<div
+    class="gallery-card relative group flex justify-start items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg"
+    role="button"
+    onclick={onCardClick}
+    data-img={imageUrl}
+    data-title={title}
+    data-type={type}
+    data-description={description}
+    data-additional-images={addImageUrls}
 >
-  <img
-    src={imageUrl}
-    alt={alt}
-    class="w-full object-cover object-center rounded-lg transition duration-200 group-hover:scale-110"
-  />
-  <div
-    class="overlay absolute opacity-0 h-full p-6 bg-fgPurple/50 group-hover:opacity-100 flex flex-col justify-between"
-  >
-    <div class="text text-bgWhite">
-      {title && <h3 class="text-xl font-semibold ">{title}</h3>}
-      {type && <h3 class="text-lg font-light italic mb-8">{type}</h3>}
-      {description && <p>{description}</p>}
-    </div>
+    <img
+        src={imageUrl}
+        alt={alt}
+        class="w-full object-cover object-center rounded-lg transition duration-200 group-hover:scale-110"
+    />
+    <div
+        class="overlay absolute opacity-0 h-full p-6 bg-fgPurple/50 group-hover:opacity-100 flex flex-col justify-between"
+    >
+        <div class="text text-bgWhite text-clip">
+            {title && <h3 class="text-xl font-semibold ">{title}</h3>}
+            {
+                type && (
+                    <h3 class="text-lg font-light italic mb-2 2xl:mb-8 ">
+                        {type}
+                    </h3>
+                )
+            }
+            {description && <p>{description}</p>}
+        </div>
 
-    <div class="w-full flex justify-between text-center items-center">
-      <Button text="Learn More" addClasses="text-fgWhite " />
-      <ArrowSvg />
+        <div class="w-full flex justify-between text-center items-center">
+            <Button text="Learn More" addClasses="text-fgWhite " />
+            <ArrowSvg />
+        </div>
     </div>
-  </div>
 </div>
