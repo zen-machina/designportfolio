@@ -18,7 +18,8 @@ import Contact from '../layouts/Contact.astro';
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const navLinks = document.querySelectorAll('.nav-link');
-            const navButton = document.querySelector('.nav-button');
+            const introSection = document.getElementById('Intro');
+            const navButton = document.querySelector('.contact-button');
 
             function updateActiveLink() {
                 let currentSection = 'Intro';
@@ -35,14 +36,62 @@ import Contact from '../layouts/Contact.astro';
                     }
                 });
 
+                function updateLinkStyles() {
+                    const isPastIntro =
+                        window.scrollY > introSection.offsetTop + introSection.offsetHeight;
+
+                    navLinks.forEach((link) => {
+                        const navCircle = link.querySelector('.nav-circle');
+                        if (isPastIntro) {
+                            // Change text color and nav-circle color after scrolling past 'Intro'
+                            link.classList.remove('text-bgWhite'); // Assuming this is your class for white text
+                            link.classList.add('text-zenPurple'); // Your class for dark purple text
+
+                            // Update navCircle color if needed
+                            navCircle.classList.add('border-zenPurple');
+                            navCircle.classList.remove('border-bgWhite');
+                        } else {
+                            // Revert text color and nav-circle color before 'Intro'
+                            link.classList.add('text-bgWhite');
+                            link.classList.remove('text-zenPurple');
+
+                            // Revert navCircle color if changed
+                            navCircle.classList.remove('border-zenPurple');
+                            navCircle.classList.add('border-bgWhite');
+                        }
+                    });
+                }
+
+                // trying to have nav links change color when not on intro section
                 navLinks.forEach((linkElement) => {
                     const link = linkElement as HTMLAnchorElement; // Type assertion for anchor element
                     const navCircle = link.querySelector('.nav-circle');
                     if (navCircle) {
-                        if (link.hash === '#' + currentSection) {
+                        if (link.hash === '#' + currentSection && currentSection === 'Intro') {
                             navCircle.classList.add('bg-bgWhite');
+                        } else if (
+                            link.hash === '#' + currentSection &&
+                            currentSection !== 'Intro'
+                        ) {
+                            navCircle.classList.remove('border-bgWhite');
+                            navCircle.classList.add('bg-fgPurple');
+                            navCircle.classList.add('border-fgPurple');
+                            link.classList.remove('text-bgWhite');
+                            link.classList.add('text-fgPurple');
+                        } else if (
+                            link.hash !== '#' + currentSection &&
+                            currentSection !== 'Intro'
+                        ) {
+                            link.classList.add('text-fgPurple');
+                            link.classList.remove('text-bgWhite');
+                            link.classList.remove('border-bgWhite');
+                            navCircle.classList.add('border-fgPurple');
                         } else {
+                            navCircle.classList.remove('border-fgPurple');
                             navCircle.classList.remove('bg-bgWhite');
+                            navCircle.classList.remove('bg-fgPurple');
+                            link.classList.add('text-bgWhite');
+                            link.classList.remove('text-fgPurple');
                         }
                     }
                 });
