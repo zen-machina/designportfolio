@@ -1,11 +1,11 @@
 ---
-const { text, href, scrollTo, addClasses = "" } = Astro.props;
+const { text, href, scrollTo } = Astro.props;
 ---
 
 <a
-  href={href ? href : "#"}
-  class={"nav-button w-32 h-12 bg-transparent hover:bg-zenOrange hover:text-bgWhite text-zenOrange border-2 border-zenOrange font-bold flex justify-center items-center rounded ${scrollTo === 'active' ? 'bg-zenOrange text-bgWhite' : ''}"}
-  data-scroll-to={scrollTo}
+    href={href ? href : '#'}
+    class={"contact-button w-32 h-12 bg-transparent hover:bg-zenOrange hover:text-bgWhite text-zenOrange border-2 border-zenOrange font-bold flex justify-center items-center rounded ${scrollTo === 'active' ? 'bg-zenOrange text-bgWhite' : ''}"}
+    data-scroll-to={scrollTo}
 >
-  {text}
+    {text}
 </a>
